@@ -1,0 +1,165 @@
+def my_compare(x,y): # Determines which of two strings are alphabetically greater or equal
+        if x > y:
+            return(1)
+        elif x < y:
+            return(-1)
+        else:
+            return(0)
+
+def is_char_in(x,y): # Determines if y exists in x
+    if y in x:
+        return True
+    else:
+        return False
+
+def is_char_not_in(x,y): # inverse of above
+    if y not in x:
+        return True
+    else:
+        return False
+
+def my_count(x,y):
+    count = 0
+    for i in range(len(x)):
+        if x[i] == y:
+            count = count + 1
+    return(count)
+
+def my_endswith(x,y):
+    if x[-1] == y:
+        return True
+        return("True")
+    else:
+        return False
+        return("False")
+
+def my_find(x,y): # finds first substring of x equivalent to y
+    index = -1
+    for i in range(len(x)):
+        if x[i] == y:
+            index = i # find index of y in x
+            break
+    return(index)
+
+def my_replace(x, y, z):
+    new_x = ""
+    for i in x:
+        if i is not y:
+            new_x = new_x + i
+        else:
+            new_x = new_x + z
+    return(new_x)
+
+def my_upper(x):
+    new_x = ""
+    for i in x:
+        if ord(i) > 96:
+            i = ord(i) - 32 # converts to unicode, then alters to unicode for uppercase letter
+            i = chr(i) # returns unicode to letter, now uppercase
+            new_x = new_x + i
+        else:
+            new_x = new_x + i
+    return(new_x)
+
+def my_lower(x):
+    new_x = ""
+    for i in x:
+        if ord(i) < 96:
+            i = ord(i) + 32 # converts to unicode, then alters to unicode for lowercase letter
+            i = chr(i) # returns unicode to letter, now lowercase
+            new_x = new_x + i
+        else:
+            new_x = new_x + i
+    return(new_x)
+
+def my_title(sentence):
+    new_sentence = "" # Deposit for new upper- & lowercase characters
+    new_word = True
+    for char in sentence: # Go through string letter by letter
+        if new_word: # If 
+            char = ord(char) - 32
+            char = chr(char)
+            new_sentence += char 
+            new_word = False # does not repeat after first character of each word
+            
+        elif char == ' ': # if character is a space, add space to new_sentence
+            new_word = True
+            new_sentence += ' ' 
+        else: # for all characters after first per word, return copy to new_sentence
+            new_sentence += char
+    return new_sentence
+
+def is_substring_in(x,y): # Determines if y exists in x
+    if y in x:
+        return True
+    else:
+        return False
+        
+def remove_repeats(x):
+    char_list = []
+    for i in x:
+        if i not in char_list:
+            char_list += i
+        else:
+            continue
+    return(''.join(char_list))
+
+# Test accuracy of functions
+def tests():
+    "Test Re-implement string methods"
+    
+    # Test compare function
+    assert my_compare('abc', 'abd') == -1
+    assert my_compare('abc', 'abc') == 0
+    assert my_compare('abd', 'abc') == 1
+
+    # Test is_char_in function
+    assert is_char_in('apple', 'e') == ('e' in 'apple')
+    assert is_char_in('team', 'i') == ('i' in 'team')
+
+    # Test is_char_not_in function
+    assert is_char_not_in('apple', 'e') == ('e' not in 'apple')
+    assert is_char_not_in('team', 'i') == ('i' not in 'team')
+
+    # Test my_count function
+    assert my_count('abracadabra', 'a') == 'abracadabra'.count('a')
+
+    # Test ends_with function
+    assert my_endswith('quartz', 'z') == 'quartz'.endswith('z')
+    assert my_endswith('quartz', 'q') == 'quartz'.endswith('q')
+
+    # Test my_find function
+    assert my_find('Brian', 'i') == 'Brian'.find('i')
+    assert my_find('Jeff', 'f') == 'Jeff'.find('f')
+    assert my_find('Brian', '🔍') == 'Brian'.find('🔍')    
+
+    # Test my_replace function 
+    assert my_replace('aaba', 'a', 'c') == 'aaba'.replace('a', 'c')
+
+    # Test my_upper function
+    for string in ['brian', 'jeff']:
+        assert my_upper(string) == string.upper()
+
+    # Test my_lower function
+    for string in ['BRIAN', 'JEFF']:
+        assert my_lower(string) == string.lower()
+
+    # Test my_title
+    assert my_title('brian spiering') == 'brian spiering'.title() == 'Brian Spiering'
+    assert my_title('jeff johnson') == 'jeff johnson'.title() == 'Jeff Johnson'
+
+    # Test is_substring_in function
+    assert is_substring_in('duck, duck, goose', 'goose') == ('goose' in 'duck, duck, goose')
+    assert is_substring_in('duck, duck, goose', 'flamingo') == ('flamingo' in 'duck, duck, goose')
+
+    
+    # Test remove repeats
+    assert remove_repeats('apple') == "aple"
+    assert remove_repeats('sassafras') == 'safr'
+
+    print("All tests pass 😀")
+
+def main():
+    tests()
+
+main()
